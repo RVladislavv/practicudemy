@@ -40,3 +40,32 @@ personalMovieDB.movies[lastFilm2] = filmRating2;
 
 
 console.log(personalMovieDB);
+
+console.log( NaN || 2 || undefined ); //2
+ 
+console.log( NaN && 2 && undefined ); //NaN
+ 
+console.log( 1 && 2 && 3 ); //3
+ 
+console.log( !1 && 2 || !3 ); //false
+ 
+console.log( 25 || null && !3 ); //25
+ 
+console.log( NaN || null || !3 || undefined || 5); //5
+ 
+console.log( NaN || null && !3 && undefined || 5); //5
+ 
+console.log( 5 === 5 && 3 > 1 || 5); //true
+
+
+function secondtTask () {
+    for(let i = 20; i > 10; i--) {
+        if(i == 13) {
+            break;
+        }
+        console.log(i);
+    }
+}
+
+secondtTask();
+
