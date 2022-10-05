@@ -24,10 +24,10 @@ let personalMovieDB = {
 
 let countQuestions = 0;
 for(let i = 0; i < 2; i++) {
-    let lastFilm = prompt('Один из последних просмотренных фильмов?');
+    let lastF = prompt('Один из последних просмотренных фильмов?');
     let filmRating = prompt('На сколько оцените его?');
-    if(lastFilm != '' && filmRating != '' && lastFilm != null && filmRating != null && lastFilm.length < 50 && filmRating < 50) {
-        personalMovieDB.movies[lastFilm] = filmRating;
+    if(lastF != '' && filmRating != '' && lastF != null && filmRating != null && lastF.length < 50 && filmRating < 50) {
+        personalMovieDB.movies[lastF] = filmRating;
     } else {
         i--;
         console.log('Error');
