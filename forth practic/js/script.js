@@ -22,7 +22,7 @@ const personalMovieDB = {
     genres: [],
     privat: false,
 
-    start: function () {
+    start: function() {
         personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
         while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
@@ -30,7 +30,7 @@ const personalMovieDB = {
         }
     },
 
-    rememberMyFilms: function () {
+    rememberMyFilms: function() {
         for (let i = 0; i < 2; i++) {
             const a = prompt('Один из последних просмотренных фильмов?', ''),
                   b = prompt('На сколько оцените его?', '');
@@ -45,7 +45,7 @@ const personalMovieDB = {
         }
     },
 
-    detectPersonalLevel: function () {
+    detectPersonalLevel: function() {
         if (personalMovieDB.count < 10) {
             console.log("Просмотрено довольно мало фильмов");
         } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
@@ -57,25 +57,22 @@ const personalMovieDB = {
         }
     },
 
-    showMyDB: function (hidden) {
+    showMyDB: function(hidden) {
         if (!hidden) {
             console.log(personalMovieDB);
         }
     },
-    /*В методе writeYourGenres запретить пользователю нажать кнопку "отмена" или оставлять пустую строку. 
-Если он это сделал - возвращать его к этому же вопросу. После того, как все жанры введены - 
-при помощи метода forEach вывести в консоль сообщения в таком виде:
-"Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
+    
     writeYourGenres: function () {
         for(let i = 0; i < 3; i++) {
             let temp = prompt(`Ваш любимый жанр под номером ${i+1}`, '');
-            if(temp == null || temp == '') {
+            if(temp === null || temp === '') {
                 i--;
             } else {
                 personalMovieDB.genres[i]  = temp;
             }
         }
-        personalMovieDB.genres.forEach((el, i, arr) => console.log(`Любимый жанр #${i+1} - это ${el}`));
+        personalMovieDB.genres.forEach((el, i) => console.log(`Любимый жанр #${i+1} - это ${el}`));
     },
     
     toggleVisibleMyDB: function () {
