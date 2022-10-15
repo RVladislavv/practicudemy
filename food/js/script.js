@@ -118,14 +118,20 @@ window.addEventListener('DOMContentLoaded', () => {
           modal = document.querySelector('.modal'),
           modalCloseBtn = document.querySelector('[data-close]');
 
+    function openModal() {
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+        //modal.classList.toggle('show'); - тогда надо будет убрать класс hide у modal
+        document.body.style.overflow = 'hidden';
+        //если пользователь сам открыл - то убираем открытие через время
+        clearInterval(modalTimerId);
+    }
+
     modalTrigger.forEach(btn => {
-        btn.addEventListener('click', () => {
-            modal.classList.add('show');
-            modal.classList.remove('hide');
-            //modal.classList.toggle('show'); - тогда надо будет убрать класс hide у modal
-            document.body.style.overflow = 'hidden';
-        });
+        btn.addEventListener('click', openModal);
     });
+
+    
 
     function closeModal() {
         modal.classList.add('hide');
@@ -150,4 +156,22 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    //открытие модального окна через время
+    const modalTimerId = setTimeout(openModal, 5000);
+
+    function showModalByScroll() {
+        //проверка, что долистал до конца страницы
+        //прокрученная часть + видимая часть(в данный момент) >= высоты всего сайта - 1px(чтоб наверняка)
+        if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
+            openModal();
+            //удаляем обработчик событий, чтоб не открывалось модульное окно при каждом прокруте до конца страницы
+            window.removeEventListener('scroll', showModalByScroll);
+        }
+    }
+
+
+
+    //открытие мод окна, когда пользователь долистал до конца
+    window.addEventListener('scroll', showModalByScroll);
 });
